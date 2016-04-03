@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Tamo Junto</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_create_business">Create Business</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="category">Category</string>
+    <string name="location">Location</string>
+    <string name="phone">Phone</string>
+    <string-array name="business_categories">
+        <item>Type A</item>
+        <item>Type B</item>
+        <item>Type C</item>
+    </string-array>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>
