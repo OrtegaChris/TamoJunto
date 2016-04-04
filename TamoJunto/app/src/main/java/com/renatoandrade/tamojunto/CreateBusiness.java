@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.renatoandrade.tamojunto.DBManagement.BusinessController;
 
 public class CreateBusiness extends AppCompatActivity {
 
@@ -49,6 +52,7 @@ public class CreateBusiness extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_done) {
+            insertBusiness();
             return true;
         }
         if (id == R.id.action_settings) {
@@ -56,6 +60,21 @@ public class CreateBusiness extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void insertBusiness() {
+        BusinessController crud = new BusinessController(getBaseContext());
+
+        String name = ((EditText)findViewById(R.id.txtName)).getText().toString();
+        String description = ((EditText)findViewById(R.id.txtDescription)).getText().toString();
+        String category = ((Spinner)findViewById(R.id.spnType)).getSelectedItem().toString();
+        String location = ((EditText)findViewById(R.id.txtLocation)).getText().toString();
+        String phone = ((EditText)findViewById(R.id.txtPhone)).getText().toString();
+
+        String result;
+        result = crud.insert(name, description, category, location, phone);
+        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+        finish();
     }
 
 }

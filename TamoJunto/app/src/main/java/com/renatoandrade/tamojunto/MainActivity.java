@@ -31,11 +31,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button btnCreate = (Button) findViewById(R.id.btnCreate);
-
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CreateBusiness.class);
+                startActivity(i);
+            }
+        });
+
+        Button btnList = (Button) findViewById(R.id.btnList);
+        btnList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), BusinessListActivity.class);
                 startActivity(i);
             }
         });

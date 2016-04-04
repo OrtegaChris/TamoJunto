@@ -27,4 +27,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="127dp"
         android:onClick="sendMessage"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List"
+        android:id="@+id/btnList"
+        android:layout_below="@+id/btnCreate"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
