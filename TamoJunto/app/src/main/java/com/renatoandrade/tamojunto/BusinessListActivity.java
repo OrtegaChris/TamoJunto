@@ -1,5 +1,6 @@
 package com.renatoandrade.tamojunto;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -18,6 +20,7 @@ import com.renatoandrade.tamojunto.DBManagement.DBCreator;
 public class BusinessListActivity extends AppCompatActivity {
 
     private ListView list;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +30,26 @@ public class BusinessListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         BusinessController crud = new BusinessController(getBaseContext());
-        Cursor cursor = crud.listAll();
+        cursor = crud.listAll();
         String[] nomeCampos = new String[]{DBCreator.ID, DBCreator.NAME};
         int[] idViews = new int[]{R.id.businessId, R.id.businessName};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(getBaseContext(), R.layout.business_grid, cursor, nomeCampos, idViews, 0);
         list = (ListView) findViewById(R.id.businessListView);
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String code;
+                cursor.moveToPosition(position);
+                code = cursor.getString(cursor.getColumnIndexOrThrow(DBCreator.ID));
+                Intent intent = new Intent(BusinessListActivity.this, UpdateBusinessActivity.class);
+                intent.putExtra("code", code);
+                startActivity(intent);
+                finish();
+            }
+        });
+        
     }
 
     @Override

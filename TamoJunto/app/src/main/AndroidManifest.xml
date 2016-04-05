@@ -31,6 +31,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.renatoandrade.tamojunto.MainActivity" />
         </activity>
+        <activity
+            android:name=".UpdateBusinessActivity"
+            android:label="@string/title_activity_update_business"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

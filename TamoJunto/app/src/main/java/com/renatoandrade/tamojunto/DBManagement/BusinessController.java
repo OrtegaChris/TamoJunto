@@ -48,4 +48,42 @@ public class BusinessController {
         return cursor;
     }
 
+    public Cursor returnBusinessById(int id) {
+        Cursor cursor;
+        String[] fields = {DBCreator.ID, DBCreator.NAME, DBCreator.CATEGORY, DBCreator.DESCRIPTION,
+                DBCreator.LOCATION, DBCreator.PHONE};
+        String where = DBCreator.ID + "=" + id;
+        db = businessesDB.getReadableDatabase();
+        cursor = db.query(DBCreator.TB_BUSINESSES, fields, where, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
+
+    public String update(int id, String name, String category, String description, String location, String phone) {
+        ContentValues values;
+        String where;
+        long result;
+
+        db = businessesDB.getWritableDatabase();
+        where = DBCreator.ID + "=" + id;
+
+        values = new ContentValues();
+        values.put(DBCreator.NAME, name);
+        values.put(DBCreator.CATEGORY, category);
+        values.put(DBCreator.DESCRIPTION, description);
+        values.put(DBCreator.LOCATION, location);
+        values.put(DBCreator.PHONE, phone);
+
+        result = db.update(DBCreator.TB_BUSINESSES, values, where, null);
+        db.close();
+
+        if (result == -1)
+            return "An error occurred";
+        else
+            return "Business updated";
+    }
+
 }

@@ -22,7 +22,7 @@ public class CreateBusiness extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spnType);
+        Spinner spinner = (Spinner) findViewById(R.id.spnCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.business_categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -67,12 +67,12 @@ public class CreateBusiness extends AppCompatActivity {
 
         String name = ((EditText)findViewById(R.id.txtName)).getText().toString();
         String description = ((EditText)findViewById(R.id.txtDescription)).getText().toString();
-        String category = ((Spinner)findViewById(R.id.spnType)).getSelectedItem().toString();
+        String category = ((Spinner)findViewById(R.id.spnCategory)).getSelectedItem().toString();
         String location = ((EditText)findViewById(R.id.txtLocation)).getText().toString();
         String phone = ((EditText)findViewById(R.id.txtPhone)).getText().toString();
 
         String result;
-        result = crud.insert(name, description, category, location, phone);
+        result = crud.insert(name, category, description, location, phone);
         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
         finish();
     }
