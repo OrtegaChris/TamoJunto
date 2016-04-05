@@ -86,4 +86,19 @@ public class BusinessController {
             return "Business updated";
     }
 
+    public String delete(int id){
+        long result;
+
+        String where = DBCreator.ID + "=" + id;
+
+        db = businessesDB.getWritableDatabase();
+        result = db.delete(DBCreator.TB_BUSINESSES, where, null);
+        db.close();
+
+        if (result == -1)
+            return "An error occurred";
+        else
+            return "Business deleted";
+    }
+
 }
