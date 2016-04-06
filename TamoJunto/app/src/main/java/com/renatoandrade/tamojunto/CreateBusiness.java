@@ -1,5 +1,6 @@
 package com.renatoandrade.tamojunto;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -73,6 +74,8 @@ public class CreateBusiness extends AppCompatActivity {
 
         String result;
         result = crud.insert(name, category, description, location, phone);
+        Intent intent = new Intent(CreateBusiness.this, BusinessListActivity.class);
+        startActivity(intent);
         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
         finish();
     }

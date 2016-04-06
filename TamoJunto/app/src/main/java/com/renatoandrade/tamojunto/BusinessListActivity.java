@@ -45,8 +45,8 @@ public class BusinessListActivity extends AppCompatActivity {
                 code = cursor.getString(cursor.getColumnIndexOrThrow(DBCreator.ID));
                 Intent intent = new Intent(BusinessListActivity.this, UpdateBusinessActivity.class);
                 intent.putExtra("code", code);
-                startActivity(intent);
                 finish();
+                startActivity(intent);
             }
         });
         

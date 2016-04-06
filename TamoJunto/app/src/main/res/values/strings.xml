@@ -8,9 +8,10 @@
     <string name="location">Location</string>
     <string name="phone">Phone</string>
     <string-array name="business_categories">
-        <item>Type A</item>
-        <item>Type B</item>
-        <item>Type C</item>
+        <item>Restaurant</item>
+        <item>Grocery Store</item>
+        <item>Bar or Pub</item>
+        <item>Shopping</item>
     </string-array>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
