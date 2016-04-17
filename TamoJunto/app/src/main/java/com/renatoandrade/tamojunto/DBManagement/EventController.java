@@ -35,7 +35,7 @@ public class EventController {
         if (result == -1)
             return "An error occurred";
         else
-            return "Business created";
+            return "Event created";
     }
 
     public Cursor listAll() {
@@ -52,7 +52,7 @@ public class EventController {
 
     public Cursor returnEventById(int id) {
         Cursor cursor;
-        String[] fields = {DBCreator.ID, DBCreator.DATE, DBCreator.CATEGORY, DBCreator.DESCRIPTION,
+        String[] fields = {DBCreator.ID, DBCreator.NAME, DBCreator.DATE, DBCreator.DESCRIPTION,
                 DBCreator.LOCATION, DBCreator.TIME};
         String where = DBCreator.ID + "=" + id;
         db = eventTB.getReadableDatabase();
@@ -85,7 +85,7 @@ public class EventController {
         if (result == -1)
             return "An error occurred";
         else
-            return "Business updated";
+            return "Event updated";
     }
 
     public String delete(int id){
@@ -100,7 +100,7 @@ public class EventController {
         if (result == -1)
             return "An error occurred";
         else
-            return "Business deleted";
+            return "Event deleted";
     }
 
 }

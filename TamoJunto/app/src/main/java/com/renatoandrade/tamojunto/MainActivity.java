@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), BusinessListActivity.class);
+                Intent i = new Intent(getApplicationContext(), CreateEventActivity.class);
                 startActivity(i);
             }
         });
