@@ -75,7 +75,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
         String result;
         result = crud.insert(name, date, description, location, time);
-        Intent intent = new Intent(CreateEventActivity.this, BusinessListActivity.class);
+        Intent intent = new Intent(CreateEventActivity.this, EventListActivity.class);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
         finish();
