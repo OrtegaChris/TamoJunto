@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by Renato on 4/3/2016.
@@ -101,4 +103,53 @@ public class BusinessController {
             return "Business deleted";
     }
 
+    public Cursor search(String name, String category, String description, String location, String phone) {
+        Cursor cursor;
+        String[] fields = {DBCreator.ID, DBCreator.NAME};
+        db = businessesDB.getReadableDatabase();
+
+        String where = "";
+        int conditions = 0;
+        if (name != null) {
+            conditions++;
+            where += DBCreator.NAME + "= '" + name + "'";
+        }
+        if (category != null) {
+            conditions++;
+            if (conditions > 1)
+                where = " AND ";
+            where += DBCreator.CATEGORY + "= '" + category+ "'";
+        }
+        if (description != null) {
+            conditions++;
+            if (conditions > 1)
+                where = " AND ";
+            where += DBCreator.DESCRIPTION + "= '" + description+ "'";
+        }
+
+        if (location != null) {
+            conditions++;
+            if (conditions > 1)
+                where = " AND ";
+            where += DBCreator.LOCATION + "= '" + location+ "'";
+        }
+
+        if (phone != null) {
+            conditions++;
+            if (conditions > 1)
+                where = " AND ";
+            where += DBCreator.PHONE + "= '" + phone+ "'";
+        }
+
+        if (where.isEmpty())
+            cursor = db.query(DBCreator.TB_BUSINESSES, fields, null, null, null, null, null, null);
+        else
+            cursor = db.query(DBCreator.TB_BUSINESSES, fields, where, null, null, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
 }

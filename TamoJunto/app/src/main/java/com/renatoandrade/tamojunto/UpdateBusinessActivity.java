@@ -112,6 +112,7 @@ public class UpdateBusinessActivity extends AppCompatActivity {
                 , txtDescription.getText().toString(), txtLocation.getText().toString(), txtPhone.getText().toString());
 
         Intent intent = new Intent(UpdateBusinessActivity.this, BusinessListActivity.class);
+        intent.putExtra("category", spnCategory.getSelectedItem().toString());
         startActivity(intent);
         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
         finish();
@@ -123,6 +124,7 @@ public class UpdateBusinessActivity extends AppCompatActivity {
         result = bc.delete(Integer.parseInt(code));
 
         Intent intent = new Intent(UpdateBusinessActivity.this, BusinessListActivity.class);
+        intent.putExtra("category", spnCategory.getSelectedItem().toString());
         startActivity(intent);
         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
         finish();

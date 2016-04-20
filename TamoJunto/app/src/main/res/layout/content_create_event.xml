@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:text="Name"
+        android:hint="Name"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -32,7 +32,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/txtName"
         android:layout_alignEnd="@+id/txtName"
-        android:text="Date" />
+        android:hint="Date"
+        android:inputType="date" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/txtDate"
         android:layout_alignEnd="@+id/txtDate"
-        android:text="Location" />
+        android:hint="Location" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -54,7 +55,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/txtLocation"
         android:layout_alignEnd="@+id/txtLocation"
-        android:text="Description" />
+        android:hint="Description" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -65,5 +66,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/txtDescription"
         android:layout_alignEnd="@+id/txtDescription"
-        android:text="Time" />
+        android:hint="Time"
+        android:inputType="time" />
 </RelativeLayout>

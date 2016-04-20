@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import com.renatoandrade.tamojunto.DBManagement.BusinessController;
 import com.renatoandrade.tamojunto.DBManagement.DBCreator;
@@ -20,7 +21,13 @@ import com.renatoandrade.tamojunto.DBManagement.DBCreator;
 public class BusinessListActivity extends AppCompatActivity {
 
     private ListView list;
+
     private Cursor cursor;
+    private String name;
+    private String category;
+    private String description;
+    private String location;
+    private String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +36,19 @@ public class BusinessListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), CreateBusiness.class);
+                startActivity(i);
+            }
+        });
+
+        getSearchParameters();
         BusinessController crud = new BusinessController(getBaseContext());
-        cursor = crud.listAll();
+        cursor = crud.search(name, category, description, location, phone);
+
         String[] nomeCampos = new String[]{DBCreator.ID, DBCreator.NAME};
         int[] idViews = new int[]{R.id.businessId, R.id.businessName};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(getBaseContext(), R.layout.business_grid, cursor, nomeCampos, idViews, 0);
@@ -50,6 +68,14 @@ public class BusinessListActivity extends AppCompatActivity {
             }
         });
         
+    }
+
+    private void getSearchParameters() {
+        name = this.getIntent().getStringExtra("name");
+        category = this.getIntent().getStringExtra("category");
+        description = this.getIntent().getStringExtra("description");
+        location = this.getIntent().getStringExtra("location");
+        phone = this.getIntent().getStringExtra("phone");
     }
 
     @Override
