@@ -51,7 +51,7 @@ public class EventListActivity extends AppCompatActivity {
                 String code;
                 cursor.moveToPosition(position);
                 code = cursor.getString(cursor.getColumnIndexOrThrow(DBCreator.ID));
-                Intent intent = new Intent(EventListActivity.this, UpdateBusinessActivity.class);
+                Intent intent = new Intent(EventListActivity.this, UpdateEventActivity.class);
                 intent.putExtra("code", code);
                 finish();
                 startActivity(intent);

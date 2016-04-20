@@ -23,4 +23,5 @@
     <string name="drawer_item_item">TempMenuItem</string>
     <string name="title_activity_create_event">CreateEventActivity</string>
     <string name="title_activity_event_list">EventListActivity</string>
+    <string name="title_activity_update_event">UpdateEventActivity</string>
 </resources>
