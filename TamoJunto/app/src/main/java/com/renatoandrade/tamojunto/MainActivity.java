@@ -51,9 +51,14 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView v = (TextView) view.findViewById(R.id.label);
                 String category = v.getText().toString();
-                Intent intent = new Intent(getApplicationContext(), BusinessListActivity.class);
-                intent.putExtra("category", category);
-                startActivity(intent);
+                if (category.equals("Community Events and Meetups")){
+                    Intent i = new Intent(getApplicationContext(), EventListActivity.class);
+                    startActivity(i);
+                }else {
+                    Intent intent = new Intent(getApplicationContext(), BusinessListActivity.class);
+                    intent.putExtra("category", category);
+                    startActivity(intent);
+                }
             }
         });
 

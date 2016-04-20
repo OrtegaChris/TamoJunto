@@ -51,8 +51,8 @@ public class DBCreator extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS" + TB_BUSINESSES);
-        db.execSQL("DROP TABLE IF EXISTS" + TB_Event);
+        db.execSQL("DROP TABLE IF EXISTS " + TB_BUSINESSES);
+        db.execSQL("DROP TABLE IF EXISTS " + TB_Event);
         onCreate(db);
     }
 }
