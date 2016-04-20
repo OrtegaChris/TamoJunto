@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         new DrawerBuilder().withActivity(this).build();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        String[] homeListArray = {"Restaurants", "Grocery Stores", "Bars and Pubs", "Shopping", "Community Events and Meetups"};
+        String[] homeListArray = {"Restaurant", "Grocery Store", "Bar or Pub", "Shopping", "Community Events and Meetups"};
         //if you want to update the items at a later time it is recommended to keep it in a variable
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home);
         SecondaryDrawerItem item2 = new SecondaryDrawerItem().withName(R.string.drawer_item_settings);
@@ -47,8 +49,11 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), EventListActivity.class);
-                startActivity(i);
+                TextView v = (TextView) view.findViewById(R.id.label);
+                String category = v.getText().toString();
+                Intent intent = new Intent(getApplicationContext(), BusinessListActivity.class);
+                intent.putExtra("category", category);
+                startActivity(intent);
             }
         });
 
@@ -72,18 +77,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
-
-
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), CreateBusiness.class);
-                startActivity(i);
-            }
-        });
     }
 
     @Override

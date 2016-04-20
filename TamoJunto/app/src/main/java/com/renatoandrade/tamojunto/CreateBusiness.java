@@ -75,6 +75,7 @@ public class CreateBusiness extends AppCompatActivity {
         String result;
         result = crud.insert(name, category, description, location, phone);
         Intent intent = new Intent(CreateBusiness.this, BusinessListActivity.class);
+        intent.putExtra("category", category);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
         finish();
