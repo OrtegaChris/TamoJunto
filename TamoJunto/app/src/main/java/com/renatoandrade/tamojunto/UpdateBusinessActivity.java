@@ -1,14 +1,15 @@
 package com.renatoandrade.tamojunto;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -83,7 +84,14 @@ public class UpdateBusinessActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_delete) {
-            deleteBusiness();
+            new AlertDialog.Builder(this)
+                    .setMessage(getString(R.string.confirm_delete))
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            deleteBusiness();
+                        }})
+                    .setNegativeButton(android.R.string.no, null).show();
             return true;
         }
         if (id == R.id.action_cancel) {
