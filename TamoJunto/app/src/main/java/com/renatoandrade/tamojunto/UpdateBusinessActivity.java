@@ -54,14 +54,6 @@ public class UpdateBusinessActivity extends AppCompatActivity {
         txtDescription = (EditText) findViewById(R.id.txtDescription);
         txtLocation = (EditText) findViewById(R.id.txtLocation);
 
-        btnDelete = (Button) findViewById(R.id.btnDelete);
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteBusiness();
-            }
-        });
-
         cursor = bc.returnBusinessById(Integer.parseInt(code));
         txtName.setText(cursor.getString(cursor.getColumnIndexOrThrow(DBCreator.NAME)));
 
@@ -78,7 +70,7 @@ public class UpdateBusinessActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create, menu);
+        getMenuInflater().inflate(R.menu.menu_update, menu);
         return true;
     }
 
@@ -90,6 +82,10 @@ public class UpdateBusinessActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_delete) {
+            deleteBusiness();
+            return true;
+        }
         if (id == R.id.action_cancel) {
             finish();
             return true;

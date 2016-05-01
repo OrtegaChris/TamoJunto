@@ -50,14 +50,6 @@ public class UpdateEventActivity extends AppCompatActivity {
         txtTime = (EditText) findViewById(R.id.txtTime);
         txtDate = (EditText) findViewById(R.id.txtDate);
 
-        btnDelete = (Button) findViewById(R.id.btnDelete);
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteEvent();
-            }
-        });
-
         cursor = ec.returnEventById(Integer.parseInt(code));
         txtName.setText(cursor.getString(cursor.getColumnIndexOrThrow(DBCreator.NAME)));
         txtDate.setText(cursor.getString(cursor.getColumnIndexOrThrow(DBCreator.DATE)));
@@ -68,7 +60,7 @@ public class UpdateEventActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create, menu);
+        getMenuInflater().inflate(R.menu.menu_update, menu);
         return true;
     }
 
@@ -80,6 +72,10 @@ public class UpdateEventActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_delete) {
+            deleteEvent();
+            return true;
+        }
         if (id == R.id.action_cancel) {
             finish();
             return true;
