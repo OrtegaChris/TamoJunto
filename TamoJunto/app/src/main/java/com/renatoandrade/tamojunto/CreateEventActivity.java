@@ -24,8 +24,8 @@ import java.util.Calendar;
 
 public class CreateEventActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
-    private TextView txtDate;
-    private TextView txtTime;
+    private EditText txtDate;
+    private EditText txtTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        txtDate = (TextView) findViewById(R.id.txtDate);
+        txtDate = (EditText) findViewById(R.id.txtDate);
         txtDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus) {
@@ -51,7 +51,7 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
             }
         });
 
-        txtTime = (TextView) findViewById(R.id.txtTime);
+        txtTime = (EditText) findViewById(R.id.txtTime);
         txtTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
