@@ -10,11 +10,22 @@ import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.net.Uri;
 
 import com.renatoandrade.tamojunto.DBManagement.BusinessController;
 import com.renatoandrade.tamojunto.DBManagement.DBCreator;
@@ -26,6 +37,8 @@ public class UpdateBusinessActivity extends AppCompatActivity {
     private EditText txtDescription;
     private EditText txtLocation;
     private EditText txtPhone;
+    private Button btnDelete;
+    private Button searchWeb;
     private Cursor cursor;
     private BusinessController bc;
     private String code;
@@ -37,6 +50,35 @@ public class UpdateBusinessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_business);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        new DrawerBuilder().withActivity(this).build();
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home);
+
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(toolbar)
+                .addDrawerItems(
+                        item1,
+                        new DividerDrawerItem().withIdentifier(0)
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        // do something with the clicked item :D
+                        Intent home = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(home);
+                        return true;
+                    }
+                })
+                .build();
+
+
+
+        Button searchWeb = (Button) findViewById(R.id.searchWeb);
+
+
+
 
         spnCategory = (Spinner) findViewById(R.id.spnCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -66,6 +108,22 @@ public class UpdateBusinessActivity extends AppCompatActivity {
         txtDescription.setText(cursor.getString(cursor.getColumnIndexOrThrow(DBCreator.DESCRIPTION)));
         txtLocation.setText(cursor.getString(cursor.getColumnIndexOrThrow(DBCreator.LOCATION)));
         txtPhone.setText(cursor.getString(cursor.getColumnIndexOrThrow(DBCreator.PHONE)));
+
+        searchWeb.setOnClickListener(new View.OnClickListener() {  // Button for class
+            @Override
+            public void onClick(View v) {
+                String searchURL = "https://www.google.com/search?q=";
+                String searchName = txtName.getText().toString();
+                String searchAddress = txtLocation.getText().toString();
+                searchURL += searchName.replaceAll("\\s ","+");
+                searchURL += " "+ searchAddress.replaceAll("\\s","+");
+                Intent search = new Intent(Intent.ACTION_VIEW, Uri.parse(searchURL));
+                startActivity(search);
+
+
+            }
+        });
+
     }
 
     @Override

@@ -14,6 +14,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.renatoandrade.tamojunto.DBManagement.BusinessController;
 import com.renatoandrade.tamojunto.DBManagement.EventController;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -67,6 +73,29 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
                 }
             }
         });
+
+        new DrawerBuilder().withActivity(this).build();
+
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home);
+
+
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(toolbar)
+                .addDrawerItems(
+                        item1,
+                        new DividerDrawerItem().withIdentifier(0)
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        // do something with the clicked item
+                        Intent home = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(home);
+                        return true;
+                    }
+                })
+                .build();
     }
 
     @Override

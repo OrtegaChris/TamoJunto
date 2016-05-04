@@ -7,10 +7,17 @@ import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import com.renatoandrade.tamojunto.DBManagement.BusinessController;
 
@@ -23,6 +30,27 @@ public class CreateBusiness extends AppCompatActivity {
         setContentView(R.layout.activity_create_business);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        new DrawerBuilder().withActivity(this).build();
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home);
+
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(toolbar)
+                .addDrawerItems(
+                        item1,
+                        new DividerDrawerItem().withIdentifier(0)
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        // do something with the clicked item :D
+                        Intent home = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(home);
+                        return true;
+                    }
+                })
+                .build();
 
         Spinner spinner = (Spinner) findViewById(R.id.spnCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,

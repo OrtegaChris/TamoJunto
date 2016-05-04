@@ -38,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
         String[] homeListArray = {"Restaurant", "Grocery Store", "Bar or Pub", "Shopping", "Community Events and Meetups"};
         //if you want to update the items at a later time it is recommended to keep it in a variable
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home);
-        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withName(R.string.drawer_item_settings);
-        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withName(R.string.drawer_item_item);
+
 
 
         ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.homescreenelement, homeListArray);
@@ -69,16 +68,14 @@ public class MainActivity extends AppCompatActivity {
                 .withToolbar(toolbar)
                 .addDrawerItems(
                         item1,
-                        new DividerDrawerItem().withIdentifier(0),
-                        item2,
-                        new DividerDrawerItem().withIdentifier(1),
-                        item3,
-                        new DividerDrawerItem().withIdentifier(2)
+                        new DividerDrawerItem().withIdentifier(0)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         // do something with the clicked item :D
+                        Intent home = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(home);
                         return true;
                     }
                 })
