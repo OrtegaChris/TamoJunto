@@ -18,7 +18,7 @@ public class DBCreator extends SQLiteOpenHelper {
     public static final String DESCRIPTION = "description";
     public static final String LOCATION = "location";
     public static final String PHONE = "phone";
-    public static final int VERSION = 3;
+    public static final int VERSION = 4;
     public static final String TB_Event="Event";
     public static final String DATE = "date";
     public static final String TIME = "time";

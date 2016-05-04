@@ -71,7 +71,7 @@ public class CreateEventActivity extends AppCompatActivity implements TimePicker
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-        String time = hourOfDay+":"+minute+" ";
+        String time = hourOfDay+":"+minute;
         txtTime.setText(time);
     }
 
