@@ -105,7 +105,7 @@ public class BusinessController {
 
     public Cursor search(String name, String category, String description, String location, String phone) {
         Cursor cursor;
-        String[] fields = {DBCreator.ID, DBCreator.NAME};
+        String[] fields = {DBCreator.NAME, DBCreator.LOCATION, DBCreator.ID};
         db = businessesDB.getReadableDatabase();
 
         String where = "";

@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.TamoJunto);
         setContentView(R.layout.activity_main);
         new DrawerBuilder().withActivity(this).build();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

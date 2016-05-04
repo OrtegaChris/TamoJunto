@@ -6,19 +6,20 @@
     android:rowCount="2">
 
     <TextView
-        android:id="@+id/businessId"
+        android:id="@+id/businessName"
         android:layout_width="0dip"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="fill_horizontal"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:text="ID" />
+        android:text="NAME"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/businessName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/businessLocation"
+        android:layout_width="187dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:text="NAME" />
+        android:layout_marginTop="10dp"
+        android:text="LOCATION" />
 </GridLayout>

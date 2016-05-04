@@ -25,6 +25,7 @@ public class EventListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.TamoJunto);
         setContentView(R.layout.activity_event_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -39,8 +40,8 @@ public class EventListActivity extends AppCompatActivity {
         });
         EventController crud = new EventController(getBaseContext());
         cursor = crud.listAll();
-        String[] nomeCampos = new String[]{DBCreator.ID, DBCreator.NAME};
-        int[] idViews = new int[]{R.id.eventId, R.id.eventName};
+        String[] nomeCampos = new String[]{DBCreator.NAME, DBCreator.DATE};
+        int[] idViews = new int[]{R.id.eventName, R.id.eventDate};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(getBaseContext(), R.layout.event_grid, cursor, nomeCampos, idViews, 0);
         list = (ListView) findViewById(R.id.eventListView);
         list.setAdapter(adapter);

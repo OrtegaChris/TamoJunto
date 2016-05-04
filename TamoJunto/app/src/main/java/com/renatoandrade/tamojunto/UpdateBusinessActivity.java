@@ -1,14 +1,15 @@
 package com.renatoandrade.tamojunto;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +26,6 @@ public class UpdateBusinessActivity extends AppCompatActivity {
     private EditText txtDescription;
     private EditText txtLocation;
     private EditText txtPhone;
-    private Button btnDelete;
     private Cursor cursor;
     private BusinessController bc;
     private String code;
@@ -33,6 +33,7 @@ public class UpdateBusinessActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.TamoJunto);
         setContentView(R.layout.activity_update_business);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -54,14 +55,6 @@ public class UpdateBusinessActivity extends AppCompatActivity {
         txtDescription = (EditText) findViewById(R.id.txtDescription);
         txtLocation = (EditText) findViewById(R.id.txtLocation);
 
-        btnDelete = (Button) findViewById(R.id.btnDelete);
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteBusiness();
-            }
-        });
-
         cursor = bc.returnBusinessById(Integer.parseInt(code));
         txtName.setText(cursor.getString(cursor.getColumnIndexOrThrow(DBCreator.NAME)));
 
@@ -78,7 +71,7 @@ public class UpdateBusinessActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create, menu);
+        getMenuInflater().inflate(R.menu.menu_update, menu);
         return true;
     }
 
@@ -90,6 +83,17 @@ public class UpdateBusinessActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_delete) {
+            new AlertDialog.Builder(this)
+                    .setMessage(getString(R.string.confirm_delete))
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            deleteBusiness();
+                        }})
+                    .setNegativeButton(android.R.string.no, null).show();
+            return true;
+        }
         if (id == R.id.action_cancel) {
             finish();
             return true;
