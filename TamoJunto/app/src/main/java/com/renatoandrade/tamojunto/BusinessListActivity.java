@@ -50,8 +50,8 @@ public class BusinessListActivity extends AppCompatActivity {
         BusinessController crud = new BusinessController(getBaseContext());
         cursor = crud.search(name, category, description, location, phone);
 
-        String[] nomeCampos = new String[]{DBCreator.ID, DBCreator.NAME};
-        int[] idViews = new int[]{R.id.businessId, R.id.businessName};
+        String[] nomeCampos = new String[]{DBCreator.NAME, DBCreator.LOCATION};
+        int[] idViews = new int[]{R.id.businessName, R.id.businessLocation};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(getBaseContext(), R.layout.business_grid, cursor, nomeCampos, idViews, 0);
         list = (ListView) findViewById(R.id.businessListView);
         list.setAdapter(adapter);
