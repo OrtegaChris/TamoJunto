@@ -27,4 +27,5 @@ dependencies {
     compile('com.mikepenz:materialdrawer:5.1.6@aar') {
         transitive = true
     }
+    compile 'com.wdullaer:materialdatetimepicker:2.3.0'
 }

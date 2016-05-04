@@ -26,7 +26,6 @@ public class UpdateBusinessActivity extends AppCompatActivity {
     private EditText txtDescription;
     private EditText txtLocation;
     private EditText txtPhone;
-    private Button btnDelete;
     private Cursor cursor;
     private BusinessController bc;
     private String code;

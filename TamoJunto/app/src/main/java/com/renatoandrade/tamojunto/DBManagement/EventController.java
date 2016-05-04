@@ -40,7 +40,7 @@ public class EventController {
 
     public Cursor listAll() {
         Cursor cursor;
-        String[] fields = {DBCreator.ID, DBCreator.NAME};
+        String[] fields = {DBCreator.NAME, DBCreator.DATE, DBCreator.ID};
         db = eventTB.getReadableDatabase();
         cursor = db.query(DBCreator.TB_Event, fields, null, null, null, null, null, null);
         if (cursor != null) {
